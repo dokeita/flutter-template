@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "name": "Update Tests on Save",
+  "description": "lib/ 配下の Dart ファイルが変更されたとき、対応するテストファイルを作成または更新します。",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "lib/**/*.dart"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "変更されたファイルのパス (例: lib/features/auth/domain/auth_repository.dart) に対応するテストファイル (例: test/unit/features/auth/domain/auth_repository_test.dart) を確認してください。テストファイルが存在しない場合は作成し、存在する場合は変更内容に合わせてテストを更新してください。テストは flutter test で実行可能な形式で記述し、主要なパブリックメソッドをカバーするようにしてください。ページ (Page/Screen) や単純な UI Widget のみのファイルはスキップしてください。"
+  }
+}

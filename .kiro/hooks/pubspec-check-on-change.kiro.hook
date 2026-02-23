@@ -1,0 +1,15 @@
+{
+  "enabled": false,
+  "name": "Update pubspec on Dependency Change",
+  "description": "pubspec.yaml が変更されたときに依存関係の整合性を確認し、必要であれば flutter pub get を促します。",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "pubspec.yaml"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "pubspec.yaml が変更されました。Flutter MCP の analyze ツールを使って依存関係に問題がないか確認してください。バージョンの競合や非推奨パッケージがあれば報告してください。また、追加されたパッケージがそのユースケースに最適かどうかも pub.dev の情報を参考に評価してください。"
+  }
+}

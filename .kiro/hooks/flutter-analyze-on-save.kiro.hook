@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Flutter Analyze on Save",
+  "description": "Dart ファイルが保存されたときに flutter analyze を実行し、静的解析エラーがあれば修正します。",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "lib/**/*.dart",
+      "test/**/*.dart"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "変更されたファイルに対して Flutter MCP の analyze ツールを使って静的解析を実行してください。エラーや警告がある場合は内容を確認し、修正方法を提案するか、安全に自動修正できるものは修正してください。'use_build_context_synchronously' のような重大なエラーは必ず修正してください。"
+  }
+}

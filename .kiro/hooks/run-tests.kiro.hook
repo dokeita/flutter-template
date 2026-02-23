@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "name": "Run Tests",
+  "description": "手動トリガー: flutter test を実行して全テストの結果を確認します。",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Flutter MCP の test ツールを使ってプロジェクトの全テストを実行してください。失敗したテストがある場合は、エラーメッセージを確認して原因を特定し、修正方法を提案してください。テストが全て通っている場合はその旨を報告してください。"
+  }
+}

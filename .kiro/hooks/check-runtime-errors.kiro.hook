@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "name": "Check Runtime Errors",
+  "description": "手動トリガー: 実行中のアプリのランタイムエラーと Widget ツリーを確認し、問題を診断します。",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Flutter MCP の get_runtime_errors ツールを使って現在実行中のアプリのランタイムエラーを取得してください。エラーがある場合は get_widget_tree ツールで Widget ツリーも確認し、問題の原因を特定して修正方法を提案してください。RenderFlex オーバーフローなどのレイアウトエラーも確認してください。"
+  }
+}

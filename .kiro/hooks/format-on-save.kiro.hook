@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Format on Save",
+  "description": "Dart ファイルが保存されたときに dart format でコードをフォーマットします。",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "lib/**/*.dart",
+      "test/**/*.dart"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "変更されたファイルに対して Flutter MCP の format ツールを使ってコードをフォーマットしてください。フォーマットが完了したら、変更があった場合のみその旨を報告してください。"
+  }
+}
