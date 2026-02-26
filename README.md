@@ -36,6 +36,26 @@ git add .
 git commit -m "chore: initialize from flutter-kiro-template"
 ```
 
+次に GitHub 上にリモートリポジトリを作成して push します。
+
+**GitHub CLI を使う場合 (推奨)**
+
+```bash
+# リモートリポジトリを作成して push (gh コマンド)
+gh repo create your-app-name --private --source=. --remote=origin --push
+```
+
+**GitHub CLI を使わない場合**
+
+1. [github.com/new](https://github.com/new) でリポジトリを作成する（README の自動生成は **オフ** にする）
+2. 表示された URL をリモートに登録して push する
+
+```bash
+# リモートを登録して push
+git remote add origin https://github.com/<your-username>/your-app-name.git
+git push -u origin main
+```
+
 ### 2. Flutter プロジェクトの作成
 
 ```bash
