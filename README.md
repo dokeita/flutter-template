@@ -9,6 +9,7 @@ Flutter アプリを **Kiro** で開発するためのテンプレートリポ�
 - 📋 **Spec-Driven Development** - 実装前にスペック (要件・設計・タスク) を定義するワークフロー
 - 🔄 **Agent Hooks** - ファイル保存時の自動解析・フォーマット・テスト更新
 - 📝 **Steering ドキュメント** - プロダクト・技術スタック・コーディング規約を AI が常に参照
+- 🧠 **Agent Skills** - 要件定義 → アーキテクチャ決定 → 設計・実装 を対話形式で推進する専用スキル
 
 ## 前提条件
 
@@ -95,10 +96,19 @@ Kiro のコマンドパレット (`Cmd+Shift+P` / `Ctrl+Shift+P`) で `MCP` を�
 ├── settings/
 │   └── mcp.json                          # Flutter MCP 設定
 ├── steering/                             # AI が常に参照するガイドライン
+│   ├── conventions.md                   # AI の振る舞い規約 (日本語応答など)
+│   ├── development-workflow.md          # 3フェーズ開発ワークフロー定義
 │   ├── product.md                        # プロダクト概要
 │   ├── tech-stack.md                     # 技術スタック
 │   ├── structure.md                      # プロジェクト構造
 │   └── flutter-best-practices.md        # コーディング規約
+├── skills/                               # Agent Skills (フェーズ別専門スキル)
+│   ├── requirements-definition/
+│   │   └── SKILL.md                     # 要件定義スキル
+│   ├── architecture-decision/
+│   │   └── SKILL.md                     # アーキテクチャ決定スキル
+│   └── flutter-design-impl/
+│       └── SKILL.md                     # 設計・実装スキル
 ├── hooks/                                # エージェントフック
 │   ├── flutter-analyze-on-save.kiro.hook    # 保存時: 静的解析 (有効)
 │   ├── format-on-save.kiro.hook             # 保存時: フォーマット (有効)
@@ -106,16 +116,49 @@ Kiro のコマンドパレット (`Cmd+Shift+P` / `Ctrl+Shift+P`) で `MCP` を�
 │   ├── check-runtime-errors.kiro.hook       # 手動: ランタイムエラー確認 (無効)
 │   ├── run-tests.kiro.hook                  # 手動: テスト実行 (無効)
 │   └── pubspec-check-on-change.kiro.hook   # pubspec 変更時: 依存確認 (無効)
-└── specs/                                # スペック格納場所
+└── specs/                                # スペック格納場所 (Skills が自動生成)
     └── <feature-name>/
-        ├── requirements.md
-        ├── design.md
-        └── tasks.md
+        ├── requirements.md              # Phase 1: 要件定義
+        ├── design.md                    # Phase 2: アーキテクチャ設計
+        └── tasks.md                     # Phase 3: 実装タスクリスト
 ```
 
 ## 使い方
 
-### 新機能の開発 (Spec-Driven Development)
+### 3 フェーズ開発ワークフロー (Agent Skills)
+
+Kiro のチャットに話しかけるだけで、対応するスキルが自動起動してフェーズを推進します。
+
+#### Phase 1: 要件定義
+
+```
+「ToDoリストアプリを作りたい」
+「ユーザーが旅行の計画を管理できるアプリを作りたい」
+```
+→ `requirements-definition` スキルが起動し、ヒアリング形式で要件を整理して
+　`.kiro/specs/<feature>/requirements.md` を生成します。
+
+#### Phase 2: アーキテクチャ決定
+
+```
+「アーキテクチャを決めたい」
+「技術選定をしてほしい」
+（または Phase 1 完了後に「次へ進む」）
+```
+→ `architecture-decision` スキルが起動し、状態管理・ルーティング・パッケージを
+　選択肢形式で提示して合意し、`design.md` と `tech-stack.md` を更新します。
+
+#### Phase 3: 設計・実装
+
+```
+「実装を始めたい」
+「コードを書いてほしい」
+（または Phase 2 完了後に「次へ進む」）
+```
+→ `flutter-design-impl` スキルが起動し、タスク分解 → 実装 → MCP 検証の
+　サイクルを回しながら `tasks.md` を消化していきます。
+
+### 新機能の開発 (Kiro Spec パネルから)
 
 1. **Kiro のスペックパネルから `+` を押す** か、チャットで `Spec` モードを選択する
 2. 機能の概要を自然言語で説明する
